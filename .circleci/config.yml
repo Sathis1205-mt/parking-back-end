@@ -10,7 +10,7 @@ jobs:
           version: 20.10.7
       - run: docker build -t ghcr.io/sathis1205-mt/parking-back-end:latest .
       - run: echo $GITHUB_TOKEN | docker login ghcr.io -u $GITHUB_USERNAME --password-stdin
-      - run: docker push ghcr.io/sathis1205-mt/parking-back-end:latest:latest
+      - run: docker push ghcr.io/sathis1205-mt/parking-back-end:latest
 
 workflows:
   version: 2
