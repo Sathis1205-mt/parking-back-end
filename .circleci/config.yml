@@ -6,7 +6,6 @@ jobs:
       - image: circleci/openjdk:11-jdk
     steps:
       - checkout
-      - run: mvn clean package
       - setup_remote_docker:
           version: 20.10.7
       - run: docker build -t ghcr.io/Sathis1205-mt/parking-back-end:latest .
