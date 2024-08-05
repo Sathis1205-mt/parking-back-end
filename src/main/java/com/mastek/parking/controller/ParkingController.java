@@ -217,16 +217,19 @@ public class ParkingController {
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         } catch (UserNotFoundException e) {
             ApiResponse<Booking> response = new ApiResponse<>(HttpStatus.NOT_FOUND.value(), e.getMessage(), null);
-            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);//"User not found. Cannot book a slot.
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         } catch (UserNotActiveException e) {
             ApiResponse<Booking> response = new ApiResponse<>(HttpStatus.NOT_FOUND.value(), e.getMessage(), null);
-            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);//"User is not active. Cannot book a slot."
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         } catch (ParkingSlotUnavailableException e) {
+            ApiResponse<Booking> response = new ApiResponse<>(HttpStatus.NOT_FOUND.value(), e.getMessage(), null);
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        }catch (ParkingNotFoundException e) {
             ApiResponse<Booking> response = new ApiResponse<>(HttpStatus.NOT_FOUND.value(), e.getMessage(), null);
             return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);//"User is not active. Cannot book a slot."
         }catch (DuplicateBookingException e) {
             ApiResponse<Booking> response = new ApiResponse<>(HttpStatus.CONTINUE.value(), e.getMessage(), null);
-            return new ResponseEntity<>(response, HttpStatus.CONFLICT);//"User is not active. Cannot book a slot."
+            return new ResponseEntity<>(response, HttpStatus.CONFLICT);
         } catch (Exception e) {
             ApiResponse<Booking> response = new ApiResponse<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Failed to book parking slot. Please try again later.", null);
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
